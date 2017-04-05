@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,23 +9,43 @@ namespace Lab1_Isomorphs
 {
     public class Program
     {
-        static string input_1 = @"aaa fear mates gag egg add foo sap yay tot look meet took seer seep ate bar eat fit";
-        static string input_2 = @"aaa fear mates gag egg add foo sap yay tot look meet took seer seep ate bar eat fit
-aaabbbzzz bbbaaazzz abzzbabaz bazzababz warrior aedor eiruw aa bb cacccdaabc cdcccaddbc dcdddbccad bdbbbaddcb bdbcadbbdc abaadcbbda babcdabbac cacdbaccad dcddabccad cacccbaadb bbcdcbcbdd bcbadcbbca";
-
         public static void Main(string[] args)
         {
             var groups = new IsomorphGroups();
-            groups.AddWords(getWords());
-            groups.PrintStats(Console.Out);
+            var words = getWords();
+            if (words != null)
+            {
+                groups.AddWords(words);
+                Console.WriteLine();
+                groups.PrintStats(Console.Out);
+            }
             Console.ReadKey();
         }
 
+        const string defaultInputFile = "sample2.txt";
+
         private static IEnumerable<string> getWords()
         {
-            //TODO: allow user to specify a path to a file
-            //return input_1.Split();
-            return input_2.Split(new char[] { ' ', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            string input = null;
+            while (input == null)
+            {
+                Console.Write($"Enter the path to a seed file: ({defaultInputFile}) ");
+                var pathToFile = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(pathToFile)) pathToFile = defaultInputFile;
+
+                try
+                {
+                    using (var fs = File.OpenRead(pathToFile))
+                    using (var reader = new StreamReader(fs))
+                        input = reader.ReadToEnd();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("ERROR: Invalid path. Try again.");
+                }
+            }
+
+            return input.Split(new char[] { ' ', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }
