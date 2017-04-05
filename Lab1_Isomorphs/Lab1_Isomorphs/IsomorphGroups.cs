@@ -53,23 +53,22 @@ namespace Lab1_Isomorphs
             var no_exact_isomorphs = exact_isomorphs.Where(tup => tup.words.Length == 1).Select(tup => tup.words[0]).ToArray();
             var non_isomorphs = loose_isomorphs.Where(tup => tup.words.Length == 1).Select(tup => tup.words[0]).Where(word => no_exact_isomorphs.Contains(word)).ToArray();
 
-            Console.WriteLine("Exact isomorphs:");
+            cout.WriteLine("Exact isomorphs:");
             foreach (var exact in exact_isomorphs.Where(val => val.words.Length > 1))
             {
-                Console.WriteLine($"{exact.pattern}: [{string.Join(", ", exact.words)}]");
+                cout.WriteLine($"{exact.pattern}: [{string.Join(", ", exact.words)}]");
             }
-            Console.WriteLine();
+            cout.WriteLine();
 
-            Console.WriteLine("Loose isomorphs:");
+            cout.WriteLine("Loose isomorphs:");
             foreach (var loose in loose_isomorphs.Where(val => val.words.Length > 1))
             {
-                Console.WriteLine($"{loose.pattern}: [{string.Join(", ", loose.words)}]");
+                cout.WriteLine($"{loose.pattern}: [{string.Join(", ", loose.words)}]");
             }
-            Console.WriteLine();
+            cout.WriteLine();
 
-            Console.WriteLine("Non-isomorphs:");
-            Console.WriteLine(string.Join(" ", non_isomorphs));
-            Console.WriteLine();
+            cout.WriteLine("Non-isomorphs:");
+            cout.WriteLine(string.Join(" ", non_isomorphs));
         }
     }
 }

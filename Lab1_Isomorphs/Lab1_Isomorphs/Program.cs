@@ -17,8 +17,16 @@ namespace Lab1_Isomorphs
             {
                 groups.AddWords(words);
                 Console.WriteLine();
-                groups.PrintStats(Console.Out);
+
+                StringWriter sw = new StringWriter();
+                groups.PrintStats(sw);
+                var str = sw.GetStringBuilder().ToString();
+                Console.WriteLine(str);
+                saveOutput(str);
             }
+
+            Console.WriteLine();
+            Console.WriteLine("Press any key to continue");
             Console.ReadKey();
         }
 
@@ -39,13 +47,31 @@ namespace Lab1_Isomorphs
                     using (var reader = new StreamReader(fs))
                         input = reader.ReadToEnd();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     Console.WriteLine("ERROR: Invalid path. Try again.");
                 }
             }
 
             return input.Split(new char[] { ' ', '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        private static void saveOutput(string output, string outPath = "output.txt")
+        {
+            Console.Write($"Saving output to \"{outPath}\"... ");
+
+            try
+            {
+                using (var fs = File.OpenWrite(outPath))
+                using (var writer = new StreamWriter(fs))
+                    writer.Write(output);
+                Console.WriteLine("Done.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine();
+                Console.WriteLine($"Failed to save output. Error: {e.Message}");
+            }
         }
     }
 }
