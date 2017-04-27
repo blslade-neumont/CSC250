@@ -3,3 +3,6 @@
 **/obj
 **/Debug
 **/packages
+
+**/*.pyc
+**/__pycache__
