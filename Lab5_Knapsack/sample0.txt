@@ -1,0 +1,14 @@
+165
+10
+Item1,23,92
+Item2,31,57
+Item3,29,49
+Item4,44,68
+Item5,53,60
+Item6,38,43
+Item7,63,67
+Item8,85,84
+Item9,89,87
+Item10,82,72
+
+//Items 1,2,3,4,6 should be added for a value of 309 and weight of 165

@@ -1,0 +1,12 @@
+170
+7
+Item1,41,442
+Item2,50,525
+Item3,49,511
+Item4,59,593
+Item5,55,546
+Item6,57,564
+Item7,60,617
+
+
+// Items 2, 4, 7 should be selected for a weight of 169 and value of $1,735

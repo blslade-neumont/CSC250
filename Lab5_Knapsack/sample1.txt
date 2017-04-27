@@ -1,0 +1,7 @@
+11
+3
+DogFood,10,10
+Pebble,1,1
+Diamond,1,1000
+
+//DogFood and the Diamond should be added for a value of 1010
