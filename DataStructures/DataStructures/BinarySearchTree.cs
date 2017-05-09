@@ -94,7 +94,7 @@ namespace AlgoDataStructures
 
             public void Add(T value)
             {
-                if (this.value.CompareTo(value) < 0)
+                if (value.CompareTo(this.value) < 0)
                 {
                     if (left == null) left = new BinarySearchNode(value);
                     else left.Add(value);
