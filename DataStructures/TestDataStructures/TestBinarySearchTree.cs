@@ -118,5 +118,51 @@ namespace TestDataStructures
             //  15    75
             //          75
         }
+
+        [TestMethod]
+        public void Test_Clear()
+        {
+            var bst = new BinarySearchTree<int>();
+
+            bst.Add(50);
+            bst.Add(25);
+            bst.Add(75);
+            bst.Add(15);
+            bst.Add(35);
+            Assert.AreEqual(5, bst.Count);
+            Assert.AreEqual(3, bst.Height());
+
+            bst.Clear();
+            Assert.AreEqual(0, bst.Count);
+            Assert.AreEqual(0, bst.Height());
+
+            Assert.AreEqual("", bst.InOrder());
+            Assert.AreEqual("", bst.PreOrder());
+            Assert.AreEqual("", bst.PostOrder());
+        }
+
+        [TestMethod]
+        public void Test_Contains()
+        {
+            var bst = new BinarySearchTree<int>();
+
+            Assert.IsFalse(bst.Contains(50));
+
+            bst.Add(50);
+            Assert.IsTrue(bst.Contains(50));
+
+            bst.Add(50);
+            Assert.IsTrue(bst.Contains(50));
+
+            bst.Remove(50);
+            Assert.IsTrue(bst.Contains(50));
+
+            bst.Remove(50);
+            Assert.IsFalse(bst.Contains(50));
+            
+            Assert.AreEqual("", bst.InOrder());
+            Assert.AreEqual("", bst.PreOrder());
+            Assert.AreEqual("", bst.PostOrder());
+        }
     }
 }
