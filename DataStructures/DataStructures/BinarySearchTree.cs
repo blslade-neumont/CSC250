@@ -105,10 +105,10 @@ namespace AlgoDataStructures
                     else right.Add(value);
                 }
             }
-            public BinarySearchNode Remove(T value, ref bool wasRemoved)
+            public BinarySearchNode Remove(T value, ref bool wasRemoved, bool canRemoveSelf = true)
             {
-                var compare = this.value.CompareTo(value);
-                if (compare == 0)
+                var compare = value.CompareTo(this.value);
+                if (compare == 0 && canRemoveSelf)
                 {
                     wasRemoved = true;
                     if (right == null) return left;
@@ -118,8 +118,9 @@ namespace AlgoDataStructures
                         parent = child;
                         child = child.left;
                     }
-                    value = child.value;
-                    parent.Remove(child.value, ref wasRemoved);
+                    var replaceValue = child.value;
+                    parent.Remove(child.value, ref wasRemoved, false);
+                    this.value = replaceValue;
                 }
                 else if (compare < 0) left = left.Remove(value, ref wasRemoved);
                 else right = right.Remove(value, ref wasRemoved);
