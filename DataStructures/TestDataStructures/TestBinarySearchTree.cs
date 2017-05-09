@@ -59,5 +59,64 @@ namespace TestDataStructures
             Assert.AreEqual("75, 25, 15, 35", bst.PreOrder());
             Assert.AreEqual("15, 35, 25, 75", bst.PostOrder());
         }
+
+        [TestMethod]
+        public void Test_Count()
+        {
+            var bst = new BinarySearchTree<int>();
+            Assert.AreEqual(0, bst.Count);
+
+            bst.Add(50);
+            bst.Add(25);
+            bst.Add(75);
+            Assert.AreEqual(3, bst.Count);
+
+            bst.Add(75);
+            Assert.AreEqual(4, bst.Count);
+
+            bst.Add(15);
+            bst.Add(35);
+            Assert.AreEqual(6, bst.Count);
+
+            bst.Remove(50);
+            Assert.AreEqual(5, bst.Count);
+
+            //     75
+            //  25    75
+            //15  35
+
+            Assert.AreEqual("15, 25, 35, 75, 75", bst.InOrder());
+            Assert.AreEqual("75, 25, 15, 35, 75", bst.PreOrder());
+            Assert.AreEqual("15, 35, 25, 75, 75", bst.PostOrder());
+        }
+
+        [TestMethod]
+        public void Test_Height()
+        {
+            var bst = new BinarySearchTree<int>();
+            Assert.AreEqual(0, bst.Height());
+
+            bst.Add(50);
+            Assert.AreEqual(1, bst.Height());
+
+            bst.Add(25);
+            Assert.AreEqual(2, bst.Height());
+
+            bst.Add(75);
+            Assert.AreEqual(2, bst.Height());
+
+            bst.Add(75);
+            Assert.AreEqual(3, bst.Height());
+
+            bst.Add(15);
+            Assert.AreEqual(3, bst.Height());
+
+            bst.Remove(25);
+            Assert.AreEqual(3, bst.Height());
+
+            //     50
+            //  15    75
+            //          75
+        }
     }
 }
