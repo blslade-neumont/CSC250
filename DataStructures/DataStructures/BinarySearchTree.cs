@@ -136,7 +136,7 @@ namespace AlgoDataStructures
 
             public bool Contains(T value)
             {
-                var compare = this.value.CompareTo(value);
+                var compare = value.CompareTo(this.value);
                 if (compare == 0) return true;
                 else if (compare < 0) return left != null && left.Contains(value);
                 else return right != null && right.Contains(value);

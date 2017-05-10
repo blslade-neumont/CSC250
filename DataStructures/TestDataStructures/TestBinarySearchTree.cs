@@ -164,5 +164,35 @@ namespace TestDataStructures
             Assert.AreEqual("", bst.PreOrder());
             Assert.AreEqual("", bst.PostOrder());
         }
+
+        [TestMethod]
+        public void ContainsMaxMin()
+        {
+            BinarySearchTree<int> bst = new BinarySearchTree<int>();
+
+            bst.Add(24);
+            bst.Add(10);
+            bst.Add(1337);
+            bst.Add(8);
+            bst.Add(12);
+            bst.Add(100);
+            bst.Add(1400);
+            bst.Add(7);
+            bst.Add(9);
+            bst.Add(11);
+            bst.Add(13);
+            bst.Add(90);
+            bst.Add(110);
+            bst.Add(1350);
+            bst.Add(1500);
+
+            //           24
+            //     10          1337
+            //   8   12    100      1400
+            //  7 9 11 13 90 110 1350  1500
+
+            Assert.IsTrue(bst.Contains(7));
+            Assert.IsTrue(bst.Contains(1500));
+        }
     }
 }
