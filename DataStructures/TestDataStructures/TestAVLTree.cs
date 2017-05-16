@@ -152,6 +152,40 @@ namespace TestDataStructures
         }
 
         [TestMethod]
+        public void SingleRotationAfterRemove()
+        {
+            AVLTree<int> avl = new AVLTree<int>();
+            int[] expectedArr = { 150, 110, 175, 50, 125, 165, 185, 115, 130 };
+
+            avl.Add(110);
+            avl.Add(50);
+            avl.Add(150);
+            avl.Add(75);
+            avl.Add(125);
+            avl.Add(175);
+            avl.Add(115);
+            avl.Add(130);
+            avl.Add(165);
+            avl.Add(185);
+
+            //         110
+            //  50            150
+            //    75      125     175
+            //          115 130 165 185
+
+            avl.Remove(75);
+
+            //          150
+            //   110          175
+            //50     125    165   185
+            //     115 130
+
+            string expected = string.Join(", ", expectedArr);
+            string actual = string.Join(", ", avl.BreadthFirst().ToArray());
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void Test_SimpleAdd()
         {
             var avl = new AVLTree<int>();
@@ -181,15 +215,20 @@ namespace TestDataStructures
             avl.Add(75);
             avl.Add(15);
             avl.Add(35);
-            avl.Remove(50);
 
-            //     75
-            //  25
+            //     50
+            //  25    75
             //15  35
 
+            avl.Remove(50);
+
+            //     25
+            //  15    75
+            //      35
+
             Assert.AreEqual("15, 25, 35, 75", avl.InOrder());
-            Assert.AreEqual("75, 25, 15, 35", avl.PreOrder());
-            Assert.AreEqual("15, 35, 25, 75", avl.PostOrder());
+            Assert.AreEqual("25, 15, 75, 35", avl.PreOrder());
+            Assert.AreEqual("15, 35, 75, 25", avl.PostOrder());
         }
 
         [TestMethod]

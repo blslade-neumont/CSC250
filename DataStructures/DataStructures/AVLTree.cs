@@ -83,6 +83,23 @@ namespace AlgoDataStructures
         {
             return GetEnumerator();
         }
+        public IEnumerable<T> BreadthFirst()
+        {
+            if (root == null) yield break;
+
+            Queue<Node> stack = new Queue<Node>();
+            var current = root;
+            stack.Enqueue(current);
+
+            while (stack.Count > 0)
+            {
+                current = stack.Dequeue();
+                yield return current.value;
+
+                if (current.left != null) stack.Enqueue(current.left);
+                if (current.right != null) stack.Enqueue(current.right);
+            }
+        }
 
         private Node root;
 
@@ -93,8 +110,8 @@ namespace AlgoDataStructures
                 this.value = value;
             }
 
-            T value;
-            Node left, right;
+            public T value;
+            public Node left, right;
 
             public void Add(T value)
             {
@@ -131,19 +148,19 @@ namespace AlgoDataStructures
                         child = child.left;
                     }
                     var replaceValue = child.value;
-                    parent.Remove(child.value, ref wasRemoved, false);
                     this.value = replaceValue;
+                    parent.Remove(replaceValue, ref wasRemoved, false);
                 }
                 else if (compare < 0) left = left.Remove(value, ref wasRemoved);
                 else right = right.Remove(value, ref wasRemoved);
-                return Rebalance();
+                return canRemoveSelf ? Rebalance() : this;
             }
             public Node Rebalance()
             {
                 var bf = BalanceFactor;
                 if (bf >= 2)
                 {
-                    if (right.BalanceFactor > 0) return rotateLeft();
+                    if (right.BalanceFactor >= 0) return rotateLeft();
                     else return rotateRightLeft();
                 }
                 else if (bf <= -2)
