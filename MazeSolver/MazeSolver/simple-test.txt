@@ -1,0 +1,10 @@
+﻿
+
+A,B,C,D,E,F
+A,E
+A,B
+B,A,C,D,F
+C,B
+D,B,E,F
+E,D,F
+F,B,D,E

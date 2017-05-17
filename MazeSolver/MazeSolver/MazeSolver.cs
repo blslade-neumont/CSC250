@@ -19,6 +19,7 @@ namespace MazeSolver
             {
                 var lines = (reader.ReadToEnd() + '\n')
                     .Split('\n')
+                    .Where(line => !line.StartsWith("//"))
                     .Select(line => line.Trim(' ', '\t', '\r', '\n'));
                 var mazeLines = new List<string>();
                 foreach (var line in lines)
