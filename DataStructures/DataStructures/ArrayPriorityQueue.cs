@@ -65,8 +65,8 @@ namespace AlgoDataStructures
         {
             var self = _nodes[idx];
 
-            var leftChild = (idx + 1) * (idx + 1) - 1;
-            if (leftChild > Count) return;
+            var leftChild = (idx + 1) * 2 - 1;
+            if (leftChild >= Count) return;
             if (_nodes[leftChild].Priority > self.Priority)
             {
                 _nodes[idx] = _nodes[leftChild];
@@ -76,7 +76,7 @@ namespace AlgoDataStructures
             }
 
             var rightChild = leftChild + 1;
-            if (rightChild > Count) return;
+            if (rightChild >= Count) return;
             if (_nodes[rightChild].Priority > self.Priority)
             {
                 _nodes[idx] = _nodes[rightChild];
