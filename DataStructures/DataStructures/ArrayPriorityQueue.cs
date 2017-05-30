@@ -15,12 +15,12 @@ namespace AlgoDataStructures
         }
         public PQNode Peek()
         {
-            if (Count == 0) return null;
+            if (Count == 0) throw new InvalidOperationException("Empty queue");
             return _nodes[0];
         }
         public PQNode Dequeue()
         {
-            if (Count == 0) return null;
+            if (Count == 0) throw new InvalidOperationException("Empty queue");
             var toReturn = _nodes[0];
             _nodes[0] = _nodes[--Count];
             _nodes[Count] = null;
@@ -32,7 +32,7 @@ namespace AlgoDataStructures
 
         public override string ToString()
         {
-            return string.Join(", ", _nodes.Select(node => $"{node.Priority}:{node.Value}"));
+            return string.Join(", ", _nodes.Take(Count).Select(node => $"{node.Priority}:{node.Value}"));
         }
 
         private PQNode[] _nodes = new PQNode[16];
