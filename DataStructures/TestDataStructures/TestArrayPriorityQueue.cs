@@ -56,7 +56,7 @@ namespace TestDataStructures
         {
             var queue = new ArrayPriorityQueue();
 
-            const int test_num = 5000;
+            const int test_num = 500000;
             for (var q = 0; q < test_num; q++)
                 queue.Enqueue(q, q);
 
@@ -71,7 +71,7 @@ namespace TestDataStructures
         {
             var queue = new ArrayPriorityQueue();
 
-            const int test_num = 5000;
+            const int test_num = 500000;
             for (var q = 0; q < test_num; q++)
                 queue.Enqueue(q, test_num - 1 - q);
 
@@ -80,7 +80,7 @@ namespace TestDataStructures
             for (var q = test_num - 1; q >= 0; q--)
                 expectPriority(queue, q);
         }
-
+        
         private void expectPriority(ArrayPriorityQueue queue, int priority)
         {
             var result = queue.Dequeue();

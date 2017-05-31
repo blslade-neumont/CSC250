@@ -66,23 +66,28 @@ namespace AlgoDataStructures
             var self = _nodes[idx];
 
             var leftChild = (idx + 1) * 2 - 1;
-            if (leftChild >= Count) return;
-            if (_nodes[leftChild].Priority > self.Priority)
-            {
-                _nodes[idx] = _nodes[leftChild];
-                _nodes[leftChild] = self;
-                self = _nodes[idx];
-                normalizeDown(leftChild);
-            }
-
             var rightChild = leftChild + 1;
-            if (rightChild >= Count) return;
-            if (_nodes[rightChild].Priority > self.Priority)
+
+            if (leftChild >= Count) return;
+            if (rightChild >= Count || _nodes[leftChild].Priority > _nodes[rightChild].Priority)
             {
-                _nodes[idx] = _nodes[rightChild];
-                _nodes[rightChild] = self;
-                self = _nodes[idx];
-                normalizeDown(rightChild);
+                if (_nodes[leftChild].Priority > self.Priority)
+                {
+                    _nodes[idx] = _nodes[leftChild];
+                    _nodes[leftChild] = self;
+                    self = _nodes[idx];
+                    normalizeDown(leftChild);
+                }
+            }
+            else
+            {
+                if (_nodes[rightChild].Priority > self.Priority)
+                {
+                    _nodes[idx] = _nodes[rightChild];
+                    _nodes[rightChild] = self;
+                    self = _nodes[idx];
+                    normalizeDown(rightChild);
+                }
             }
         }
     }
