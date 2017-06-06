@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArrayPriorityQueue.cs" />
+    <Compile Include="MaxHeapPriorityQueue.cs" />
     <Compile Include="AVLTree.cs" />
     <Compile Include="BinarySearchTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AlgoDataStructures
 {
-    public class ArrayPriorityQueue
+    public class MaxHeapPriorityQueue
     {
         public void Enqueue(int priority, int value)
         {
@@ -29,6 +29,16 @@ namespace AlgoDataStructures
         }
 
         public int Count { get; private set; } = 0;
+
+        public PQNode[] ToSortedArray()
+        {
+            var arr = new PQNode[Count];
+            for (var q = 0; q < arr.Length; q++)
+            {
+                arr[q] = Dequeue();
+            }
+            return arr;
+        }
 
         public override string ToString()
         {

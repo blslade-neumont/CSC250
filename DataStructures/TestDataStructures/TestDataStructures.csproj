@@ -49,7 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestArrayPriorityQueue.cs" />
+    <Compile Include="TestMaxHeapPriorityQueue.cs" />
     <Compile Include="TestAVLTree.cs" />
     <Compile Include="TestBinarySearchTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
